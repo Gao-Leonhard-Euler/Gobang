@@ -181,5 +181,5 @@
 
 ## License
 
-本项目采用**CC BY-SA 3.0**知识共享许可协议。如需了解该协议，请查阅[https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans)
+本项目采用**CC BY-SA 3.0**知识共享许可协议。如需了解该协议，请查阅[https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans)\
 This work is licensed under CC BY-SA 4.0. To view a copy of this license, visit [http://creativecommons.org/licenses/by-sa/4.0/](http://creativecommons.org/licenses/by-sa/4.0/)
