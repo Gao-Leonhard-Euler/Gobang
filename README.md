@@ -140,7 +140,7 @@
 ## 图形化棋盘.h
 
 使用EasyX图形库实现棋盘的图形化展示功能。
-**仅支持$15\times15$大小的棋盘。**
+**仅支持**$15\times15$**大小的棋盘。**
 
 图形化结构体：visual_chessboard
 
@@ -156,12 +156,12 @@
 ## Game
 
 包含了人机对战、人人对战、机机对战三个模式，有Easy（采用静态评估算法）和Hard（极大极小搜索算法）两个难度，游戏过程保存在"GameStep.csv"文件。
-**仅支持$15\times15$大小的棋盘。**
+**仅支持**$15\times15$**大小的棋盘。**
 
 ## 回放
 
 读取"GameStep.csv"文件，指定放映速度进行对局回放，可以连续进行多局的回放。
-**仅支持$15\times15$大小的棋盘。**
+**仅支持**$15\times15$**大小的棋盘。**
 
 ## 删除对局记录
 
@@ -181,5 +181,5 @@
 
 ## License
 
-本项目采用**CC BY-SA 3.0**知识共享许可协议。如需了解该协议，请查阅[https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans)\
+本项目采用**CC BY-SA 4.0**知识共享许可协议。如需了解该协议，请查阅[https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans)\
 This work is licensed under CC BY-SA 4.0. To view a copy of this license, visit [http://creativecommons.org/licenses/by-sa/4.0/](http://creativecommons.org/licenses/by-sa/4.0/)
