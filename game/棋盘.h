@@ -1,22 +1,23 @@
 /*
 Developed By Gaosx
-2023.09.27¿ªÊ¼ÊµÏÖÆåÅÌÀà
-2023.09.30ÊµÏÖµÚÒ»¸öËã·¨£¨¹ÀÖµ£©
-2023.10.08Íê³ÉµÚÒ»¸öËã·¨µÄÓÅ»¯
-2023.11.04Íê³ÉµÚ¶ş¸öËã·¨£¨¼«´ó¼«Ğ¡ËÑË÷+Alpha-Beta¼ôÖ¦£©
-2023.11.09Ôö¼ÓÁËÒ»Ğ©³£ÊıÓÅ»¯
-2023.12.08Ôö¼ÓÆåÅÌ´óĞ¡µÄ×Ô¶¨Òå
+2023.09.27å¼€å§‹å®ç°æ£‹ç›˜ç±»
+2023.09.30å®ç°ç¬¬ä¸€ä¸ªç®—æ³•ï¼ˆä¼°å€¼ï¼‰
+2023.10.08å®Œæˆç¬¬ä¸€ä¸ªç®—æ³•çš„ä¼˜åŒ–
+2023.11.04å®Œæˆç¬¬äºŒä¸ªç®—æ³•ï¼ˆæå¤§æå°æœç´¢+Alpha-Betaå‰ªæï¼‰
+2023.11.09å¢åŠ äº†ä¸€äº›å¸¸æ•°ä¼˜åŒ–
+2023.12.08å¢åŠ æ£‹ç›˜å¤§å°çš„è‡ªå®šä¹‰
+2023.12.16æ›´æ–°äº†æ£‹ç›˜ç±»çš„å“ˆå¸Œå‡½æ•°
 */
 #include<bits/stdc++.h>
 #ifndef FiveChessSize
 #define FiveChessSize 15
 #endif
-//FiveChessSizeÎªÆåÅÌµÄ±ß³¤£¬¿ÉÒÔĞŞ¸ÄÎª5~181Ö®¼äµÄÈÎÒâÕıÕûÊıÖµ
+//FiveChessSizeä¸ºæ£‹ç›˜çš„è¾¹é•¿ï¼Œå¯ä»¥ä¿®æ”¹ä¸º5~181ä¹‹é—´çš„ä»»æ„æ­£æ•´æ•°å€¼
 namespace FiveChess{
-	class chessboard{//ÆåÅÌÀà
+	class chessboard{//æ£‹ç›˜ç±»
 		private:
 			short b[FiveChessSize][FiveChessSize];
-			inline void find(int x,short l,int &p,int &n){//ÔÚÆåÅÌÖĞÑ°ÕÒÌØ¶¨ÆåĞÎ(Æ½ºâÈı½øÖÆ±àÂë)
+			inline void find(int x,short l,int &p,int &n){//åœ¨æ£‹ç›˜ä¸­å¯»æ‰¾ç‰¹å®šæ£‹å½¢(å¹³è¡¡ä¸‰è¿›åˆ¶ç¼–ç )
 				for(short i=0;i+l<=FiveChessSize;i++){
 					for(short j=0;j+l<=FiveChessSize;j++){
 						int ans=0;
@@ -58,7 +59,7 @@ namespace FiveChess{
 					}
 				}
 			}
-			inline void find(short X1,short X2,short Y1,short Y2,int x,short l,int &p,int &n){//ÔÚ[X1,X2),[Y1,Y2)Ñ°ÕÒÌØ¶¨ÆåĞÎ(Æ½ºâÈı½øÖÆ±àÂë)
+			inline void find(short X1,short X2,short Y1,short Y2,int x,short l,int &p,int &n){//åœ¨[X1,X2),[Y1,Y2)å¯»æ‰¾ç‰¹å®šæ£‹å½¢(å¹³è¡¡ä¸‰è¿›åˆ¶ç¼–ç )
 				for(short i=X1;i+l<=X2;i++){
 					for(short j=Y1;j+l<=Y2;j++){
 						int ans=0;
@@ -107,34 +108,34 @@ namespace FiveChess{
 				}
 			}
 		public:
-			chessboard(){//ÆåÅÌ³õÊ¼»¯(È«¿Õ)
+			chessboard(){//æ£‹ç›˜åˆå§‹åŒ–(å…¨ç©º)
 				memset(b,0,sizeof(b));
 			}
-			void restart(){//ÆåÅÌÖØÖÃ(È«¿Õ)
+			void restart(){//æ£‹ç›˜é‡ç½®(å…¨ç©º)
 				memset(b,0,sizeof(b));
 			}
-			short operator()(unsigned short x,unsigned short y){//Ò»¸öÎ»ÖÃµÄÆå×ÓÖÖÀà(-1Îª°××Ó£¬1ÎªºÚ×Ó)
+			short operator()(unsigned short x,unsigned short y){//ä¸€ä¸ªä½ç½®çš„æ£‹å­ç§ç±»(-1ä¸ºç™½å­ï¼Œ1ä¸ºé»‘å­)
 				return (x>=FiveChessSize||y>=FiveChessSize)?0:b[x][y];
 			}
-			bool can_put(unsigned short x,unsigned short y){//ÅĞ¶ÏÊÇ·ñ¿ÉÂä×Ó
+			bool can_put(unsigned short x,unsigned short y){//åˆ¤æ–­æ˜¯å¦å¯è½å­
 				return (x>=FiveChessSize||y>=FiveChessSize)?0:(b[x][y]==0?1:0);
 			}
-			void put(unsigned short x,unsigned short y,short i){//Âä×Ó
+			void put(unsigned short x,unsigned short y,short i){//è½å­
 				if(can_put(x,y))b[x][y]=i;
 			}
-			short NobodyWin(){//ÅĞ¶ÏÓÎÏ·ÊÇ·ñ½áÊø£¬ºÚ·½Ó®·µ»Ø1£¬°×·½Ó®·µ»Ø-1£¬ÓÎÏ·Î´½áÊø·µ»Ø0
+			short NobodyWin(){//åˆ¤æ–­æ¸¸æˆæ˜¯å¦ç»“æŸï¼Œé»‘æ–¹èµ¢è¿”å›1ï¼Œç™½æ–¹èµ¢è¿”å›-1ï¼Œæ¸¸æˆæœªç»“æŸè¿”å›0
 				int p=0,n=0;
 				find(121,5,p,n);
 				if(p!=0)return 1;
 				if(n!=0)return -1;
 				return 0;
 			}
-			inline unsigned short empty_position(){//¿ÕÎ»ÊıÁ¿
+			inline unsigned short empty_position(){//ç©ºä½æ•°é‡
 				unsigned short a=0;
 				for(unsigned short x=0;x<FiveChessSize;x++)for(unsigned short y=0;y<FiveChessSize;y++)if(b[x][y]==0)a++;
 				return a;
 			}
-			void output_screen(){//Êä³öÆåÅÌÖÁÆÁÄ»
+			void output_screen(){//è¾“å‡ºæ£‹ç›˜è‡³å±å¹•
 				putchar(' ');putchar(' ');
 				for(unsigned short j=0;j<FiveChessSize;j++){
 					if(j<10)printf("  %hd",j);
@@ -150,13 +151,13 @@ namespace FiveChess{
 						putchar(' ');
 						switch(b[i][j]){
 							case 0:
-								putchar(' ');//ÓÃ¿Õ¸ñ±íÊ¾¿ÕÎ»
+								putchar(' ');//ç”¨ç©ºæ ¼è¡¨ç¤ºç©ºä½
 								break;
 							case 1:
-								putchar('1');//ÓÃ'1'±íÊ¾ºÚ×Ó
+								putchar('1');//ç”¨'1'è¡¨ç¤ºé»‘å­
 								break;
 							case -1:
-								putchar('0');//ÓÃ'0'±íÊ¾°××Ó
+								putchar('0');//ç”¨'0'è¡¨ç¤ºç™½å­
 						}
 						putchar(' ');
 					}
@@ -170,7 +171,7 @@ namespace FiveChess{
 			friend class chessAI_dfs_static;
 			friend struct hashChess;
 	};
-	struct hashChess{//ÆåÅÌ×´Ì¬¹şÏ£(unordered_mapÊ¹ÓÃ)
+	struct hashChess{//æ£‹ç›˜çŠ¶æ€å“ˆå¸Œ(unordered_mapä½¿ç”¨)
 		int operator()(const chessboard cb)const{
 			return cb.b[FiveChessSize>>1][FiveChessSize>>1]+cb.b[(FiveChessSize>>1)-1][FiveChessSize>>1]+cb.b[FiveChessSize>>1][(FiveChessSize>>1)-1]+cb.b[(FiveChessSize>>1)-1][(FiveChessSize>>1)-1]\
 			+((cb.b[FiveChessSize>>2][FiveChessSize>>2]+cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize-(FiveChessSize>>2)]+cb.b[FiveChessSize-(FiveChessSize>>2)-1][FiveChessSize-(FiveChessSize>>2)-1])<<1)\
@@ -205,41 +206,41 @@ namespace FiveChess{
 			+(cb.b[FiveChessSize-(FiveChessSize>>3)-1][FiveChessSize-(FiveChessSize>>3)-1]<<30);
 		}
 	};
-	bool operator==(chessboard x,chessboard y){//ÅĞ¶ÏÁ½¸öÆåÅÌÊÇ·ñÏàÍ¬
+	bool operator==(chessboard x,chessboard y){//åˆ¤æ–­ä¸¤ä¸ªæ£‹ç›˜æ˜¯å¦ç›¸åŒ
 		for(unsigned short i=0;i<FiveChessSize;i++)for(unsigned short j=0;j<FiveChessSize;j++)if(x.b[i][j]!=y.b[i][j])return 0;
 		return 1;
 	}
-	bool operator!=(chessboard x,chessboard y){//ÅĞ¶ÏÁ½¸öÆåÅÌÊÇ·ñ²»Í¬
+	bool operator!=(chessboard x,chessboard y){//åˆ¤æ–­ä¸¤ä¸ªæ£‹ç›˜æ˜¯å¦ä¸åŒ
 		for(unsigned short i=0;i<FiveChessSize;i++)for(unsigned short j=0;j<FiveChessSize;j++)if(x.b[i][j]!=y.b[i][j])return 1;
 		return 0;
 	}
-	class chessAI_static{//¾²Ì¬ÆÀ¹ÀÂä×ÓËã·¨
+	class chessAI_static{//é™æ€è¯„ä¼°è½å­ç®—æ³•
 		protected:
 			long long myK,enemyK,success5[2],success4[2],half4[2],success3[2],half3[2],success2[2],half2[2];
-			/*myKºÍenemyK·Ö±ğ´ú±í×Ô¼ºµÄÆå×ÓÓë¶Ô·½µÄÆå×ÓµÄÈ¨ÖØ
-			ÆäÓà·Ö±ğ´ú±í¹ÀÖµº¯ÊıÖĞ×Ô¼ººÍ¶Ô·½µÄÎå³É¡¢»îËÄ¡¢³åËÄ¡¢»îÈı¡¢ÃßÈı¡¢»î¶ş¡¢Ãß¶şÇé¿ö¶ÔÓ¦µÄÈ¨ÖØ*/
-			short r;//Æå×ÓÑÕÉ«£¬1ÎªºÚ£¬-1Îª°×
+			/*myKå’ŒenemyKåˆ†åˆ«ä»£è¡¨è‡ªå·±çš„æ£‹å­ä¸å¯¹æ–¹çš„æ£‹å­çš„æƒé‡
+			å…¶ä½™åˆ†åˆ«ä»£è¡¨ä¼°å€¼å‡½æ•°ä¸­è‡ªå·±å’Œå¯¹æ–¹çš„äº”æˆã€æ´»å››ã€å†²å››ã€æ´»ä¸‰ã€çœ ä¸‰ã€æ´»äºŒã€çœ äºŒæƒ…å†µå¯¹åº”çš„æƒé‡*/
+			short r;//æ£‹å­é¢œè‰²ï¼Œ1ä¸ºé»‘ï¼Œ-1ä¸ºç™½
 		public:
-			chessAI_static(short R){//³õÊ¼»¯(1ÎªºÚ£¬-1Îª°×)
+			chessAI_static(short R){//åˆå§‹åŒ–(1ä¸ºé»‘ï¼Œ-1ä¸ºç™½)
 				r=R;
 			}
 			chessAI_static(){
 				r=0;
 			}
-			void set(){//ÉèÖÃÈ¨ÖØ(´ÓChessboardValue.txtÎÄ¼şÖĞ¶ÁÈ¡)
+			void set(){//è®¾ç½®æƒé‡(ä»ChessboardValue.txtæ–‡ä»¶ä¸­è¯»å–)
 				std::ifstream inp;
 				inp.open("Value\\ChessboardValue.txt",std::ios::in);
 				inp>>myK>>enemyK>>success5[0]>>success5[1]>>success4[0]>>success4[1]>>half4[0]>>half4[1]>>success3[0]>>success3[1]>>half3[0]>>half3[1]>>success2[0]>>success2[1]>>half2[0]>>half2[1];
 				inp.close();
 			}
-			void set(char *s){//ÉèÖÃÈ¨ÖØ(´Ó×Ô¶¨ÒåÎÄ¼şÖĞ¶ÁÈ¡)
+			void set(char *s){//è®¾ç½®æƒé‡(ä»è‡ªå®šä¹‰æ–‡ä»¶ä¸­è¯»å–)
 				std::ifstream inp;
 				inp.open(s,std::ios::in); 
 				inp>>myK>>enemyK>>success5[0]>>success5[1]>>success4[0]>>success4[1]>>half4[0]>>half4[1]>>success3[0]>>success3[1]>>half3[0]>>half3[1]>>success2[0]>>success2[1]>>half2[0]>>half2[1];
 				inp.close();
 			}
 		protected:
-			inline long long value(chessboard cb){//ÆåÅÌÕûÌå¹ÀÖµº¯Êı
+			inline long long value(chessboard cb){//æ£‹ç›˜æ•´ä½“ä¼°å€¼å‡½æ•°
 				int p=0,n=0;
 				cb.find(121,5,p,n);
 				long long ret=r==1?(p*success5[0]-n*success5[1]):(n*success5[0]-p*success5[1]);
@@ -295,7 +296,7 @@ namespace FiveChess{
 				ret+=r==-1?(n-p):(p-n);
 				return ret;
 			}
-			inline long long value(chessboard cb,short x,short y){//Âä×Ó(x,y)¹ÀÖµº¯Êı
+			inline long long value(chessboard cb,short x,short y){//è½å­(x,y)ä¼°å€¼å‡½æ•°
 				int p=0,n=0;
 				cb.find(x>4?x-4:0,x+5<FiveChessSize?x+5:FiveChessSize,y>4?y-4:0,y+5<FiveChessSize?y+5:FiveChessSize,121,5,p,n);
 				long long ret=r==1?(p*success5[0]-n*success5[1]):(n*success5[0]-p*success5[1]);
@@ -352,7 +353,7 @@ namespace FiveChess{
 				return ret;
 			}
 		public:
-			std::pair<unsigned short,unsigned short> put(chessboard cb){//»ùÓÚ¾²Ì¬¹ÀÖµº¯ÊıÆÀ¹À½øĞĞÂä×Ó
+			std::pair<unsigned short,unsigned short> put(chessboard cb){//åŸºäºé™æ€ä¼°å€¼å‡½æ•°è¯„ä¼°è¿›è¡Œè½å­
 				long long val=-9223372036854775807,t;
 				unsigned short X,Y;
 				srand(rand()+time(0));
@@ -377,16 +378,16 @@ namespace FiveChess{
 				return std::make_pair(X,Y);
 			}
 	};
-	class chessAI_dfs_static:public chessAI_static{//»ùÓÚ¾²Ì¬ÆÀ¹Àº¯Êı¼ôÖ¦µÄÉî¶ÈÓÅÏÈËÑË÷
+	class chessAI_dfs_static:public chessAI_static{//åŸºäºé™æ€è¯„ä¼°å‡½æ•°å‰ªæçš„æ·±åº¦ä¼˜å…ˆæœç´¢
 		public:
-			chessAI_dfs_static(short R){//³õÊ¼»¯(1ÎªºÚ£¬-1Îª°×)
+			chessAI_dfs_static(short R){//åˆå§‹åŒ–(1ä¸ºé»‘ï¼Œ-1ä¸ºç™½)
 				r=R;
 			}
 			chessAI_dfs_static(){
 				r=0;
 			}
 		private:
-			inline long long value_enemy(chessboard cb){//¶Ô·½ÆåÅÌÕûÌå¹ÀÖµº¯Êı
+			inline long long value_enemy(chessboard cb){//å¯¹æ–¹æ£‹ç›˜æ•´ä½“ä¼°å€¼å‡½æ•°
 				int p=0,n=0;
 				cb.find(121,5,p,n);
 				long long ret=r==-1?(p*success5[0]-n*success5[1]):(n*success5[0]-p*success5[1]);
@@ -442,7 +443,7 @@ namespace FiveChess{
 				ret+=r==1?(n-p):(p-n);
 				return ret;
 			}
-			inline long long value_enemy(chessboard cb,unsigned short x,unsigned short y){//Âä×Ó(x,y)¶Ô·½¹ÀÖµº¯Êı
+			inline long long value_enemy(chessboard cb,unsigned short x,unsigned short y){//è½å­(x,y)å¯¹æ–¹ä¼°å€¼å‡½æ•°
 				int p=0,n=0;
 				cb.find(x>4?x-4:0,x+5<FiveChessSize?x+5:FiveChessSize,y>4?y-4:0,y+5<FiveChessSize?y+5:FiveChessSize,121,5,p,n);
 				long long ret=r==-1?(p*success5[0]-n*success5[1]):(n*success5[0]-p*success5[1]);
@@ -498,20 +499,20 @@ namespace FiveChess{
 				ret+=r==1?(n-p):(p-n);
 				return ret;
 			}
-			long long MySearch(chessboard cb,std::unordered_map<chessboard,long long,hashChess> &mp,unsigned short deep,unsigned short ep,long long large,long long small);//Éî¶ÈÓÅÏÈËÑË÷-ÎÒ·½Âä×Ó
-			long long EnemySearch(chessboard cb,std::unordered_map<chessboard,long long,hashChess> &mp,unsigned short deep,unsigned short ep,long long large,long long small);//Éî¶ÈÓÅÏÈËÑË÷-¶Ô·½Âä×Ó
+			long long MySearch(chessboard cb,std::unordered_map<chessboard,long long,hashChess> &mp,unsigned short deep,unsigned short ep,long long large,long long small);//æ·±åº¦ä¼˜å…ˆæœç´¢-æˆ‘æ–¹è½å­
+			long long EnemySearch(chessboard cb,std::unordered_map<chessboard,long long,hashChess> &mp,unsigned short deep,unsigned short ep,long long large,long long small);//æ·±åº¦ä¼˜å…ˆæœç´¢-å¯¹æ–¹è½å­
 		public:
-			std::pair<unsigned short,unsigned short> put(chessboard cb){//»ùÓÚÉî¶ÈÓÅÏÈËÑË÷ºÍ¾²Ì¬¹ÀÖµº¯Êı½øĞĞÂä×Ó
-				unsigned short ep=cb.empty_position()-1,d=ep>4?4:2,num=8>ep?ep+1:9;//ep:¿ÕÎ»ÊıÁ¿,d:ËÑË÷Éî¶È,num:·ÖÖ§ÊıÁ¿
+			std::pair<unsigned short,unsigned short> put(chessboard cb){//åŸºäºæ·±åº¦ä¼˜å…ˆæœç´¢å’Œé™æ€ä¼°å€¼å‡½æ•°è¿›è¡Œè½å­
+				unsigned short ep=cb.empty_position()-1,d=ep>4?4:2,num=8>ep?ep+1:9;//ep:ç©ºä½æ•°é‡,d:æœç´¢æ·±åº¦,num:åˆ†æ”¯æ•°é‡
 				if(ep<=3||ep>=222){
-					if(ep==224)return std::make_pair((unsigned short)(FiveChessSize>>1),(unsigned short)(FiveChessSize>>1));//µÚÒ»²½ÂäÔÚÆåÅÌÖĞ¼ä
-					return chessAI_static::put(cb);//³ıÁËµÚÒ»²½Ö®ÍâµÄÇ°Èı²½ºÍ×îºóÈı²½Ö±½ÓÊ¹ÓÃ¾²Ì¬¹ÀÖµº¯ÊıÂä×Ó
+					if(ep==224)return std::make_pair((unsigned short)(FiveChessSize>>1),(unsigned short)(FiveChessSize>>1));//ç¬¬ä¸€æ­¥è½åœ¨æ£‹ç›˜ä¸­é—´
+					return chessAI_static::put(cb);//é™¤äº†ç¬¬ä¸€æ­¥ä¹‹å¤–çš„å‰ä¸‰æ­¥å’Œæœ€åä¸‰æ­¥ç›´æ¥ä½¿ç”¨é™æ€ä¼°å€¼å‡½æ•°è½å­
 				}
 				chessboard search[9];
 				long long v,searchVal[9]={-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807};
 				std::pair<unsigned short,unsigned short> searchPair[9];
 				srand(rand()+time(0));
-				for(unsigned short x=0;x<FiveChessSize;x++)for(unsigned short y=0;y<FiveChessSize;y++)//±éÀúÆåÅÌ£¬Ñ°ÕÒ½ÏÓÅµÄËÑË÷µã
+				for(unsigned short x=0;x<FiveChessSize;x++)for(unsigned short y=0;y<FiveChessSize;y++)//éå†æ£‹ç›˜ï¼Œå¯»æ‰¾è¾ƒä¼˜çš„æœç´¢ç‚¹
 					if(cb.b[x][y]==0){
 						v=value(cb,x,y)*(enemyK-myK);
 						cb.b[x][y]=-r;
@@ -531,11 +532,11 @@ namespace FiveChess{
 						}
 						cb.b[x][y]=0;
 					}
-				std::unordered_map<chessboard,long long,hashChess> mp;//¹şÏ£±í(ÅĞ¶ÏÖØ¸´)
+				std::unordered_map<chessboard,long long,hashChess> mp;//å“ˆå¸Œè¡¨(åˆ¤æ–­é‡å¤)
 				srand(rand()+time(0));
 				v=EnemySearch(search[0],mp,d,ep,-9223372036854775807,9223372036854775807);
 				unsigned short i=0;long long n;
-				for(unsigned short j=1;j<num;j++){//Ñ­»·£¬È¡×î´óÖµ
+				for(unsigned short j=1;j<num;j++){//å¾ªç¯ï¼Œå–æœ€å¤§å€¼
 					n=EnemySearch(search[j],mp,d,ep,v,9223372036854775807);
 					if(n>v){
 						v=n;i=j;
@@ -544,14 +545,14 @@ namespace FiveChess{
 				return searchPair[i];
 			}
 	};
-	long long chessAI_dfs_static::MySearch(chessboard cb,std::unordered_map<chessboard,long long,hashChess> &mp,unsigned short deep,unsigned short ep,long long large,long long small){//Éî¶ÈÓÅÏÈËÑË÷-ÎÒ·½Âä×Ó
-		if(mp.find(cb)!=mp.end())return mp[cb];//²éÖØ(Èç¹ûÆåÅÌ×´Ì¬ÒÑ¾­ÔÚ¹şÏ£±íÖĞ´æÔÚ£¬Ôò·µ»Ø)
+	long long chessAI_dfs_static::MySearch(chessboard cb,std::unordered_map<chessboard,long long,hashChess> &mp,unsigned short deep,unsigned short ep,long long large,long long small){//æ·±åº¦ä¼˜å…ˆæœç´¢-æˆ‘æ–¹è½å­
+		if(mp.find(cb)!=mp.end())return mp[cb];//æŸ¥é‡(å¦‚æœæ£‹ç›˜çŠ¶æ€å·²ç»åœ¨å“ˆå¸Œè¡¨ä¸­å­˜åœ¨ï¼Œåˆ™è¿”å›)
 		long long Val=value(cb);
-		if(Val>=success5[0]||Val<=-success5[1]){//Èç¹ûÒÑ¾­´æÔÚÎå³É£¬Ôò·µ»Ø
+		if(Val>=success5[0]||Val<=-success5[1]){//å¦‚æœå·²ç»å­˜åœ¨äº”æˆï¼Œåˆ™è¿”å›
 			mp[cb]=Val<<11;
 			return Val<<11;
 		}
-		if(deep<=1){//Ò¶×Ó½Úµã
+		if(deep<=1){//å¶å­èŠ‚ç‚¹
 			long long val=-9223372036854775807,t;
 			unsigned short X,Y;
 			for(unsigned short x=0;x<FiveChessSize;x++)for(unsigned short y=0;y<FiveChessSize;y++)
@@ -575,11 +576,11 @@ namespace FiveChess{
 			mp[cb]=Val;
 			return Val;
 		}
-		unsigned short num=ep<9?ep:9;//ËÑË÷·ÖÖ§ÊıÁ¿
+		unsigned short num=ep<9?ep:9;//æœç´¢åˆ†æ”¯æ•°é‡
 		long long t,searchVal[9]={-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807};
 		chessboard search[9];
 		deep--;ep--;
-		for(unsigned short x=0;x<FiveChessSize;x++)for(unsigned short y=0;y<FiveChessSize;y++)//±éÀúÆåÅÌ£¬Ñ°ÕÒ½ÏÓÅµÄËÑË÷µã
+		for(unsigned short x=0;x<FiveChessSize;x++)for(unsigned short y=0;y<FiveChessSize;y++)//éå†æ£‹ç›˜ï¼Œå¯»æ‰¾è¾ƒä¼˜çš„æœç´¢ç‚¹
 			if(cb.b[x][y]==0){
 				t=value(cb,x,y)*(enemyK-myK);
 				cb.b[x][y]=-r;
@@ -598,7 +599,7 @@ namespace FiveChess{
 				cb.b[x][y]=0;
 			}
 		t=EnemySearch(search[0],mp,deep,ep,large,small);
-		if(t>=small||t>success5[0]){//Beta¼ôÖ¦+Ê¤Àû¾ÖÃæ
+		if(t>=small||t>success5[0]){//Betaå‰ªæ+èƒœåˆ©å±€é¢
 			mp[cb]=t;
 			return t;
 		}
@@ -606,7 +607,7 @@ namespace FiveChess{
 		for(unsigned short i=1;i<num;i++){
 			Val=EnemySearch(search[i],mp,deep,ep,large,small);
 			if(t<Val){
-				if(Val>=small||Val>success5[0]){//Beta¼ôÖ¦+Ê¤Àû¾ÖÃæ
+				if(Val>=small||Val>success5[0]){//Betaå‰ªæ+èƒœåˆ©å±€é¢
 					mp[cb]=Val;
 					return Val;
 				}
@@ -617,18 +618,18 @@ namespace FiveChess{
 		mp[cb]=t;
 		return t;
 	}
-	long long chessAI_dfs_static::EnemySearch(chessboard cb,std::unordered_map<chessboard,long long,hashChess> &mp,unsigned short deep,unsigned short ep,long long large,long long small){//Éî¶ÈÓÅÏÈËÑË÷-¶Ô·½Âä×Ó
-		if(mp.find(cb)!=mp.end())return mp[cb];//²éÖØ(Èç¹ûÆåÅÌ×´Ì¬ÒÑ¾­ÔÚ¹şÏ£±íÖĞ´æÔÚ£¬Ôò·µ»Ø)
+	long long chessAI_dfs_static::EnemySearch(chessboard cb,std::unordered_map<chessboard,long long,hashChess> &mp,unsigned short deep,unsigned short ep,long long large,long long small){//æ·±åº¦ä¼˜å…ˆæœç´¢-å¯¹æ–¹è½å­
+		if(mp.find(cb)!=mp.end())return mp[cb];//æŸ¥é‡(å¦‚æœæ£‹ç›˜çŠ¶æ€å·²ç»åœ¨å“ˆå¸Œè¡¨ä¸­å­˜åœ¨ï¼Œåˆ™è¿”å›)
 		long long Val=value_enemy(cb);
-		if(Val>=success5[0]||Val<=-success5[1]){//Èç¹ûÒÑ¾­´æÔÚÎå³É£¬Ôò·µ»Ø
+		if(Val>=success5[0]||Val<=-success5[1]){//å¦‚æœå·²ç»å­˜åœ¨äº”æˆï¼Œåˆ™è¿”å›
 			mp[cb]=-Val<<11;
 			return -Val<<11;
 		}
-		unsigned short num=ep<9?ep:9;//ËÑË÷·ÖÖ§ÊıÁ¿
+		unsigned short num=ep<9?ep:9;//æœç´¢åˆ†æ”¯æ•°é‡
 		long long t,searchVal[9]={-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807,-9223372036854775807};
 		chessboard search[9];
 		deep--;ep--;
-		for(unsigned short x=0;x<FiveChessSize;x++)for(unsigned short y=0;y<FiveChessSize;y++)//±éÀúÆåÅÌ£¬Ñ°ÕÒ½ÏÓÅµÄËÑË÷µã
+		for(unsigned short x=0;x<FiveChessSize;x++)for(unsigned short y=0;y<FiveChessSize;y++)//éå†æ£‹ç›˜ï¼Œå¯»æ‰¾è¾ƒä¼˜çš„æœç´¢ç‚¹
 			if(cb.b[x][y]==0){
 				t=(Val-value_enemy(cb,x,y))*(myK-enemyK);
 				cb.b[x][y]=r;
@@ -647,7 +648,7 @@ namespace FiveChess{
 				cb.b[x][y]=0;
 			}
 		t=MySearch(search[0],mp,deep,ep,large,small);
-		if(t<=large||t<-success5[1]){//Alpha¼ôÖ¦+Ê¤Àû¾ÖÃæ
+		if(t<=large||t<-success5[1]){//Alphaå‰ªæ+èƒœåˆ©å±€é¢
 			mp[cb]=t;
 			return t;
 		}
@@ -655,7 +656,7 @@ namespace FiveChess{
 		for(unsigned short i=1;i<num;i++){
 			Val=MySearch(search[i],mp,deep,ep,large,small);
 			if(t>Val){
-				if(Val<=large||Val<-success5[1]){//Alpha¼ôÖ¦+Ê¤Àû¾ÖÃæ
+				if(Val<=large||Val<-success5[1]){//Alphaå‰ªæ+èƒœåˆ©å±€é¢
 					mp[cb]=Val;
 					return Val;
 				}
