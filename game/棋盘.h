@@ -172,7 +172,37 @@ namespace FiveChess{
 	};
 	struct hashChess{//ÆåÅÌ×´Ì¬¹þÏ£(unordered_mapÊ¹ÓÃ)
 		int operator()(const chessboard cb)const{
-			return cb.b[FiveChessSize>>1][FiveChessSize>>1]+(cb.b[FiveChessSize>>2][FiveChessSize>>2]<<2)+(cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize-(FiveChessSize>>2)]<<4)+(cb.b[FiveChessSize>>1][FiveChessSize>>2]<<6)+(cb.b[FiveChessSize>>2][FiveChessSize>>1]<<8)+(cb.b[FiveChessSize>>1][FiveChessSize-(FiveChessSize>>2)]<<10)+(cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize>>1]<<12)+(cb.b[FiveChessSize>>2][FiveChessSize-(FiveChessSize>>2)]<<14)+(cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize>>2]<<16)+(cb.b[0][0]<<18)+(cb.b[FiveChessSize-1][FiveChessSize-1]<<20)+(cb.b[FiveChessSize-1][0]<<22)+(cb.b[0][FiveChessSize-1]<<24)+(cb.b[1][FiveChessSize>>1]<<28)+(cb.b[FiveChessSize>>1][1]<<30)+(cb.b[1][1]<<1)+(cb.b[FiveChessSize-1][1]<<3)+(cb.b[1][FiveChessSize-1]<<5)+(cb.b[0][FiveChessSize>>1]<<7)+(cb.b[FiveChessSize>>1][0]<<9)+(cb.b[FiveChessSize>>1][FiveChessSize-1]<<11)+(cb.b[FiveChessSize-1][FiveChessSize>>1]<<13);
+			return cb.b[FiveChessSize>>1][FiveChessSize>>1]+cb.b[(FiveChessSize>>1)-1][FiveChessSize>>1]+cb.b[FiveChessSize>>1][(FiveChessSize>>1)-1]+cb.b[(FiveChessSize>>1)-1][(FiveChessSize>>1)-1]\
+			+((cb.b[FiveChessSize>>2][FiveChessSize>>2]+cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize-(FiveChessSize>>2)]+cb.b[FiveChessSize-(FiveChessSize>>2)-1][FiveChessSize-(FiveChessSize>>2)-1])<<1)\
+			+((cb.b[FiveChessSize>>1][FiveChessSize>>2]+cb.b[FiveChessSize>>2][FiveChessSize>>1]+cb.b[FiveChessSize-5][FiveChessSize-5])<<2)\
+			+((cb.b[FiveChessSize>>1][FiveChessSize-(FiveChessSize>>2)]+cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize>>1])<<3)\
+			+((cb.b[FiveChessSize>>2][FiveChessSize-(FiveChessSize>>2)]+cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize>>2])<<4)\
+			+((cb.b[0][0]+cb.b[1][1]+cb.b[2][2]+cb.b[3][3]+cb.b[4][4])<<5)\
+			+((cb.b[FiveChessSize-1][FiveChessSize-1]+cb.b[FiveChessSize-2][FiveChessSize-2]+cb.b[FiveChessSize-3][FiveChessSize-3])<<6)\
+			+((cb.b[FiveChessSize-1][0]+cb.b[0][FiveChessSize-1]+cb.b[1][FiveChessSize-1]+cb.b[FiveChessSize-1][1]+cb.b[2][FiveChessSize-1]+cb.b[FiveChessSize-1][2]+cb.b[3][FiveChessSize-1]+cb.b[FiveChessSize-1][3]+cb.b[4][FiveChessSize-1]+cb.b[FiveChessSize-1][4])<<7)\
+			+((cb.b[FiveChessSize-2][0]+cb.b[0][FiveChessSize-2]+cb.b[1][FiveChessSize-2]+cb.b[FiveChessSize-2][1]+cb.b[2][FiveChessSize-2]+cb.b[FiveChessSize-2][2]+cb.b[3][FiveChessSize-2]+cb.b[FiveChessSize-2][3]+cb.b[4][FiveChessSize-2]+cb.b[FiveChessSize-2][4])<<8)\
+			+((cb.b[0][FiveChessSize>>2]+cb.b[FiveChessSize>>2][0]+cb.b[1][FiveChessSize>>2]+cb.b[FiveChessSize>>2][1]+cb.b[2][FiveChessSize>>2]+cb.b[FiveChessSize>>2][2]+cb.b[3][FiveChessSize>>2]+cb.b[FiveChessSize>>2][3]+cb.b[4][FiveChessSize>>2]+cb.b[FiveChessSize>>2][4])<<9)\
+			+((cb.b[0][FiveChessSize>>1]+cb.b[FiveChessSize>>1][0]+cb.b[1][FiveChessSize>>1]+cb.b[FiveChessSize>>1][1]+cb.b[2][FiveChessSize>>1]+cb.b[FiveChessSize>>1][2]+cb.b[3][FiveChessSize>>1]+cb.b[FiveChessSize>>1][3]+cb.b[4][FiveChessSize>>1]+cb.b[FiveChessSize>>1][4])<<10)\
+			+((cb.b[FiveChessSize>>1][FiveChessSize-2]+cb.b[FiveChessSize-2][FiveChessSize>>1]+cb.b[FiveChessSize>>1][FiveChessSize-1]+cb.b[FiveChessSize-1][FiveChessSize>>1])<<11)\
+			+((cb.b[(FiveChessSize>>1)-1][FiveChessSize>>2]+cb.b[FiveChessSize>>2][(FiveChessSize>>1)-1])<<12)\
+			+((cb.b[(FiveChessSize>>2)+1][FiveChessSize>>2]+cb.b[FiveChessSize>>2][(FiveChessSize>>2)+1])<<13)\
+			+((cb.b[(FiveChessSize>>2)+1][(FiveChessSize>>2)+1]+cb.b[(FiveChessSize>>2)-1][(FiveChessSize>>2)-1])<<14)\
+			+((cb.b[(FiveChessSize>>2)+1][(FiveChessSize>>1)-1]+cb.b[(FiveChessSize>>1)-1][(FiveChessSize>>2)+1]+cb.b[(FiveChessSize>>2)+1][(FiveChessSize>>1)-1]+cb.b[(FiveChessSize>>1)-1][(FiveChessSize>>2)+1])<<15)\
+			+((cb.b[(FiveChessSize>>2)+1][FiveChessSize>>1]+cb.b[FiveChessSize>>1][(FiveChessSize>>2)+1])<<16)\
+			+((cb.b[(FiveChessSize>>3)+1][(FiveChessSize>>3)+1]+cb.b[FiveChessSize>>3][FiveChessSize>>3])<<17)\
+			+((cb.b[FiveChessSize>>3][(FiveChessSize>>3)+1]+cb.b[(FiveChessSize>>3)+1][FiveChessSize>>3])<<18)\
+			+((cb.b[0][1]+cb.b[1][0]+cb.b[1][2]+cb.b[2][1]+cb.b[2][3]+cb.b[3][2]+cb.b[3][4]+cb.b[4][3])<<19)\
+			+((cb.b[0][2]+cb.b[0][3]+cb.b[2][0]+cb.b[3][0]+cb.b[1][3]+cb.b[3][1]+cb.b[1][4]+cb.b[4][1]+cb.b[0][4]+cb.b[4][0])<<20)\
+			+((cb.b[FiveChessSize-1][FiveChessSize-2]+cb.b[FiveChessSize-2][FiveChessSize-1]+cb.b[FiveChessSize-1][FiveChessSize-3]+cb.b[FiveChessSize-3][FiveChessSize-1]+cb.b[FiveChessSize-3][FiveChessSize-2]+cb.b[FiveChessSize-2][FiveChessSize-3])<<21)\
+			+((cb.b[FiveChessSize>>3][FiveChessSize>>2]+cb.b[FiveChessSize>>2][FiveChessSize>>3]+cb.b[FiveChessSize>>3][(FiveChessSize>>2)-1]+cb.b[(FiveChessSize>>2)-1][FiveChessSize>>3]+cb.b[FiveChessSize>>3][(FiveChessSize>>2)+1]+cb.b[(FiveChessSize>>2)+1][FiveChessSize>>3]+cb.b[FiveChessSize>>2][(FiveChessSize>>3)+1]+cb.b[(FiveChessSize>>3)+1][FiveChessSize>>2])<<22)\
+			+((cb.b[FiveChessSize>>3][(FiveChessSize>>1)-1]+cb.b[(FiveChessSize>>1)-1][FiveChessSize>>3]+cb.b[FiveChessSize>>3][FiveChessSize>>1]+cb.b[FiveChessSize>>1][FiveChessSize>>3]+cb.b[FiveChessSize>>1][(FiveChessSize>>3)+1]+cb.b[(FiveChessSize>>3)+1][FiveChessSize>>1])<<23)\
+			+((cb.b[FiveChessSize-(FiveChessSize>>3)-1][FiveChessSize>>1]+cb.b[FiveChessSize>>1][FiveChessSize-(FiveChessSize>>3)-1]+cb.b[FiveChessSize-(FiveChessSize>>3)-1][FiveChessSize>>2]+cb.b[FiveChessSize>>2][FiveChessSize-(FiveChessSize>>3)-1])<<24)\
+			+((cb.b[FiveChessSize-(FiveChessSize>>3)-1][0]+cb.b[0][FiveChessSize-(FiveChessSize>>3)-1]+cb.b[1][FiveChessSize-(FiveChessSize>>3)-1]+cb.b[FiveChessSize-(FiveChessSize>>3)-1][1]+cb.b[2][FiveChessSize-(FiveChessSize>>3)-1]+cb.b[FiveChessSize-(FiveChessSize>>3)-1][2]+cb.b[FiveChessSize-(FiveChessSize>>3)-1][3]+cb.b[3][FiveChessSize-(FiveChessSize>>3)-1]+cb.b[FiveChessSize-(FiveChessSize>>3)-1][4]+cb.b[4][FiveChessSize-(FiveChessSize>>3)-1])<<25)\
+			+((cb.b[FiveChessSize>>3][0]+cb.b[0][FiveChessSize>>3]+cb.b[1][FiveChessSize>>3]+cb.b[FiveChessSize>>3][1]+cb.b[2][FiveChessSize>>3]+cb.b[FiveChessSize>>3][2]+cb.b[FiveChessSize>>3][3]+cb.b[FiveChessSize>>3][3]+cb.b[FiveChessSize>>3][4]+cb.b[4][FiveChessSize>>3])<<26)\
+			+((cb.b[(FiveChessSize>>3)+1][0]+cb.b[0][(FiveChessSize>>3)+1]+cb.b[1][(FiveChessSize>>3)+1]+cb.b[(FiveChessSize>>3)+1][1]+cb.b[2][(FiveChessSize>>3)+1]+cb.b[(FiveChessSize>>3)+1][2]+cb.b[(FiveChessSize>>3)+1][3]+cb.b[3][(FiveChessSize>>3)+1]+cb.b[4][(FiveChessSize>>3)+1]+cb.b[(FiveChessSize>>3)+1][4])<<27)\
+			+((cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize>>3]+cb.b[FiveChessSize>>3][FiveChessSize-(FiveChessSize>>2)]+cb.b[FiveChessSize-(FiveChessSize>>2)-1][FiveChessSize>>3]+cb.b[FiveChessSize>>3][FiveChessSize-(FiveChessSize>>2)-1])<<28)\
+			+((cb.b[FiveChessSize-(FiveChessSize>>2)][(FiveChessSize>>3)+1]+cb.b[(FiveChessSize>>3)+1][FiveChessSize-(FiveChessSize>>2)]+cb.b[FiveChessSize-(FiveChessSize>>2)-1][(FiveChessSize>>3)+1]+cb.b[(FiveChessSize>>3)+1][FiveChessSize-(FiveChessSize>>2)-1])<<29)\
+			+(cb.b[FiveChessSize-(FiveChessSize>>3)-1][FiveChessSize-(FiveChessSize>>3)-1]<<30);
 		}
 	};
 	bool operator==(chessboard x,chessboard y){//ÅÐ¶ÏÁ½¸öÆåÅÌÊÇ·ñÏàÍ¬
