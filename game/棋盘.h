@@ -17,7 +17,7 @@ namespace FiveChess{
 	class chessboard{//棋盘类
 		private:
 			short b[FiveChessSize][FiveChessSize];
-			inline void find(int x,short l,int &p,int &n){//在棋盘中寻找特定棋形(平衡三进制编码)
+			inline void find(const int &x,const short &l,int &p,int &n){//在棋盘中寻找特定棋形(平衡三进制编码)
 				for(short i=0;i+l<=FiveChessSize;i++){
 					for(short j=0;j+l<=FiveChessSize;j++){
 						int ans=0;
@@ -59,7 +59,7 @@ namespace FiveChess{
 					}
 				}
 			}
-			inline void find(short X1,short X2,short Y1,short Y2,int x,short l,int &p,int &n){//在[X1,X2),[Y1,Y2)寻找特定棋形(平衡三进制编码)
+			inline void find(const short &X1,const short &X2,const short &Y1,const short &Y2,const int &x,const short &l,int &p,int &n){//在[X1,X2),[Y1,Y2)寻找特定棋形(平衡三进制编码)
 				for(short i=X1;i+l<=X2;i++){
 					for(short j=Y1;j+l<=Y2;j++){
 						int ans=0;
@@ -114,13 +114,13 @@ namespace FiveChess{
 			void restart(){//棋盘重置(全空)
 				memset(b,0,sizeof(b));
 			}
-			short operator()(unsigned short x,unsigned short y){//一个位置的棋子种类(-1为白子，1为黑子)
+			inline short operator()(const unsigned short x,const unsigned short y){//一个位置的棋子种类(-1为白子，1为黑子)
 				return (x>=FiveChessSize||y>=FiveChessSize)?0:b[x][y];
 			}
-			bool can_put(unsigned short x,unsigned short y){//判断是否可落子
+			inline bool can_put(const unsigned short x,const unsigned short y){//判断是否可落子
 				return (x>=FiveChessSize||y>=FiveChessSize)?0:(b[x][y]==0?1:0);
 			}
-			void put(unsigned short x,unsigned short y,short i){//落子
+			inline void put(const unsigned short x,const unsigned short y,const short i){//落子
 				if(can_put(x,y))b[x][y]=i;
 			}
 			short NobodyWin(){//判断游戏是否结束，黑方赢返回1，白方赢返回-1，游戏未结束返回0
@@ -172,7 +172,7 @@ namespace FiveChess{
 			friend struct hashChess;
 	};
 	struct hashChess{//棋盘状态哈希(unordered_map使用)
-		int operator()(const chessboard cb)const{
+		int operator()(const chessboard &cb)const{
 			return cb.b[FiveChessSize>>1][FiveChessSize>>1]+cb.b[(FiveChessSize>>1)-1][FiveChessSize>>1]+cb.b[FiveChessSize>>1][(FiveChessSize>>1)-1]+cb.b[(FiveChessSize>>1)-1][(FiveChessSize>>1)-1]\
 			+((cb.b[FiveChessSize>>2][FiveChessSize>>2]+cb.b[FiveChessSize-(FiveChessSize>>2)][FiveChessSize-(FiveChessSize>>2)]+cb.b[FiveChessSize-(FiveChessSize>>2)-1][FiveChessSize-(FiveChessSize>>2)-1])<<1)\
 			+((cb.b[FiveChessSize>>1][FiveChessSize>>2]+cb.b[FiveChessSize>>2][FiveChessSize>>1]+cb.b[FiveChessSize-5][FiveChessSize-5])<<2)\
@@ -240,7 +240,7 @@ namespace FiveChess{
 				inp.close();
 			}
 		protected:
-			inline long long value(chessboard cb){//棋盘整体估值函数
+			inline long long value(chessboard &cb){//棋盘整体估值函数
 				int p=0,n=0;
 				cb.find(121,5,p,n);
 				long long ret=r==1?(p*success5[0]-n*success5[1]):(n*success5[0]-p*success5[1]);
@@ -296,7 +296,7 @@ namespace FiveChess{
 				ret+=r==-1?(n-p):(p-n);
 				return ret;
 			}
-			inline long long value(chessboard cb,short x,short y){//落子(x,y)估值函数
+			inline long long value(chessboard &cb,short &x,short &y){//落子(x,y)估值函数
 				int p=0,n=0;
 				cb.find(x>4?x-4:0,x+5<FiveChessSize?x+5:FiveChessSize,y>4?y-4:0,y+5<FiveChessSize?y+5:FiveChessSize,121,5,p,n);
 				long long ret=r==1?(p*success5[0]-n*success5[1]):(n*success5[0]-p*success5[1]);
@@ -387,7 +387,7 @@ namespace FiveChess{
 				r=0;
 			}
 		private:
-			inline long long value_enemy(chessboard cb){//对方棋盘整体估值函数
+			inline long long value_enemy(chessboard &cb){//对方棋盘整体估值函数
 				int p=0,n=0;
 				cb.find(121,5,p,n);
 				long long ret=r==-1?(p*success5[0]-n*success5[1]):(n*success5[0]-p*success5[1]);
@@ -443,7 +443,7 @@ namespace FiveChess{
 				ret+=r==1?(n-p):(p-n);
 				return ret;
 			}
-			inline long long value_enemy(chessboard cb,unsigned short x,unsigned short y){//落子(x,y)对方估值函数
+			inline long long value_enemy(chessboard &cb,unsigned short &x,unsigned short &y){//落子(x,y)对方估值函数
 				int p=0,n=0;
 				cb.find(x>4?x-4:0,x+5<FiveChessSize?x+5:FiveChessSize,y>4?y-4:0,y+5<FiveChessSize?y+5:FiveChessSize,121,5,p,n);
 				long long ret=r==-1?(p*success5[0]-n*success5[1]):(n*success5[0]-p*success5[1]);
@@ -504,8 +504,8 @@ namespace FiveChess{
 		public:
 			std::pair<unsigned short,unsigned short> put(chessboard cb){//基于深度优先搜索和静态估值函数进行落子
 				unsigned short ep=cb.empty_position()-1,d=ep>4?4:2,num=8>ep?ep+1:9;//ep:空位数量,d:搜索深度,num:分支数量
-				if(ep<=3||ep>=222){
-					if(ep==224)return std::make_pair((unsigned short)(FiveChessSize>>1),(unsigned short)(FiveChessSize>>1));//第一步落在棋盘中间
+				if(ep<=3||ep>=FiveChessSize*FiveChessSize-3){
+					if(ep==FiveChessSize*FiveChessSize-1)return std::make_pair((unsigned short)(FiveChessSize>>1),(unsigned short)(FiveChessSize>>1));//第一步落在棋盘中间
 					return chessAI_static::put(cb);//除了第一步之外的前三步和最后三步直接使用静态估值函数落子
 				}
 				chessboard search[9];
