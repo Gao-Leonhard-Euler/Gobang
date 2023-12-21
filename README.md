@@ -14,7 +14,7 @@
 #define SearchNum 9
 //SearchNum为搜索的分支数，可以修改为你想要的值，推荐值为9
 
-#define SearchDep 6
+#define SearchDep 4
 //SearchNum为搜索的深度-1，可以修改为你想要的偶数，推荐值为4
 ```
 
