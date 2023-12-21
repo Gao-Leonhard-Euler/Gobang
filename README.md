@@ -10,6 +10,12 @@
 ```cpp
 #define FiveChessSize 15
 //棋盘的边长，可以依据需求修改为5~181之间的任意正整数值
+
+#define SearchNum 9
+//SearchNum为搜索的分支数，可以修改为你想要的值，推荐值为9
+
+#define SearchDep 6
+//SearchNum为搜索的深度-1，可以修改为你想要的偶数，推荐值为4
 ```
 
 命名空间：FiveChess
