@@ -362,7 +362,7 @@ namespace FiveChess{
 				return ret;
 			}
 		public:
-			std::pair<unsigned short,unsigned short> put(chessboard cb){//基于静态估值函数评估进行落子
+			virtual std::pair<unsigned short,unsigned short> put(chessboard cb){//基于静态估值函数评估进行落子
 				long long val=-9223372036854775807,t;
 				unsigned short X,Y;
 				srand(rand()+time(0));
